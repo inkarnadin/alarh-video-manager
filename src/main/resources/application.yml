@@ -1,0 +1,15 @@
+alarh:
+  target-group:
+    active:
+      source: active.txt
+    verified:
+      source: verified.txt
+    unchecked:
+      source: unchecked.txt
+      monitoring: 1
+    uncertain:
+      source: uncertain.txt
+    dead:
+      source: dead.txt
+  recording:
+    duration: 04:00:00
