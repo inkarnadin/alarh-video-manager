@@ -6,7 +6,7 @@ import ru.alarh.videomanager.video.dto.BasicTarget
 
 @Transducer
 @CompileStatic
-class String2SourceTargetDtoConverter implements Converter<String, BasicTarget> {
+class String2BasicTargetConverter implements Converter<String, BasicTarget> {
 
   /**
    * Convert string to target object.

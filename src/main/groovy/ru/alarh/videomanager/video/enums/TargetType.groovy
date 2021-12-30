@@ -1,4 +1,4 @@
-package ru.alarh.videomanager.video.persistence
+package ru.alarh.videomanager.video.enums
 
 enum TargetType {
 

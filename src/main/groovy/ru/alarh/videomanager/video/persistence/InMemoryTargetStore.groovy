@@ -2,6 +2,7 @@ package ru.alarh.videomanager.video.persistence
 
 import groovy.transform.CompileStatic
 import ru.alarh.videomanager.video.dto.BasicTarget
+import ru.alarh.videomanager.video.enums.TargetType
 
 @CompileStatic
 class InMemoryTargetStore {

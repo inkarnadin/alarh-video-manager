@@ -1,35 +1,37 @@
 package ru.alarh.videomanager.video.service.target
 
-
 import groovy.transform.CompileStatic
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.alarh.videomanager.meta.RequiredArgsConstructor
+
 import ru.alarh.videomanager.video.converter.Converter
 import ru.alarh.videomanager.video.dto.BasicTarget
 import ru.alarh.videomanager.video.persistence.InMemoryTargetStore
-import ru.alarh.videomanager.video.persistence.TargetType
+import ru.alarh.videomanager.video.enums.TargetType
 import ru.alarh.videomanager.video.properties.TargetGroupProperties
 import ru.alarh.videomanager.video.utility.FileUtils
 
 import java.nio.file.Files
 import java.nio.file.Path
 
-import static ru.alarh.videomanager.video.persistence.TargetType.ACTIVE
-import static ru.alarh.videomanager.video.persistence.TargetType.DEAD
-import static ru.alarh.videomanager.video.persistence.TargetType.TWINKLED
-import static ru.alarh.videomanager.video.persistence.TargetType.UNCERTAIN
-import static ru.alarh.videomanager.video.persistence.TargetType.UNCHECKED
-import static ru.alarh.videomanager.video.persistence.TargetType.VERIFIED
+import static ru.alarh.videomanager.video.enums.TargetType.ACTIVE
+import static ru.alarh.videomanager.video.enums.TargetType.DEAD
+import static ru.alarh.videomanager.video.enums.TargetType.TWINKLED
+import static ru.alarh.videomanager.video.enums.TargetType.UNCERTAIN
+import static ru.alarh.videomanager.video.enums.TargetType.UNCHECKED
+import static ru.alarh.videomanager.video.enums.TargetType.VERIFIED
 
 @Service
 @CompileStatic
 class BasicTargetServiceImpl implements BasicTargetService {
 
-  @Autowired
-  private TargetGroupProperties properties
-  @Autowired
-  private Converter<String, BasicTarget> converter
+  private final TargetGroupProperties properties
+  private final Converter<String, BasicTarget> converter
+
+  @SuppressWarnings('SpringJavaInjectionPointsAutowiringInspection')
+  BasicTargetServiceImpl(TargetGroupProperties properties, Converter<String, BasicTarget> converter) {
+    this.properties = properties
+    this.converter = converter
+  }
 
   @Override
   void read() {
