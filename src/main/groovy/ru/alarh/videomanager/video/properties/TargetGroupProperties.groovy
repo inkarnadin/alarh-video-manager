@@ -12,6 +12,7 @@ class TargetGroupProperties {
   TargetGroup verified
   TargetGroup unchecked
   TargetGroup uncertain
+  TargetGroup twinkled
   TargetGroup dead
 
   @TupleConstructor

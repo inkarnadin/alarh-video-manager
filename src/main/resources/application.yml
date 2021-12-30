@@ -9,6 +9,8 @@ alarh:
       monitoring: 1
     uncertain:
       source: uncertain.txt
+    twinkled:
+      source: twinkled.txt
     dead:
       source: dead.txt
   recording:
