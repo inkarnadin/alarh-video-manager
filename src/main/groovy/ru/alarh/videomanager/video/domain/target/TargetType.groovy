@@ -1,4 +1,4 @@
-package ru.alarh.videomanager.video.enums
+package ru.alarh.videomanager.video.domain.target
 
 enum TargetType {
 

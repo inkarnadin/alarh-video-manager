@@ -1,4 +1,4 @@
-package ru.alarh.videomanager.video.dto
+package ru.alarh.videomanager.video.domain.target
 
 class BasicTarget {
 

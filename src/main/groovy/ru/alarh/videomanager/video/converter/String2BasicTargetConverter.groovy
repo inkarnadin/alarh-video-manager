@@ -2,7 +2,7 @@ package ru.alarh.videomanager.video.converter
 
 import groovy.transform.CompileStatic
 import ru.alarh.videomanager.meta.Transducer
-import ru.alarh.videomanager.video.dto.BasicTarget
+import ru.alarh.videomanager.video.domain.target.BasicTarget
 
 @Transducer
 @CompileStatic

@@ -1,7 +1,4 @@
-package ru.alarh.videomanager.video.domain
-
-
-import ru.alarh.videomanager.video.dto.BasicTarget
+package ru.alarh.videomanager.video.domain.target
 
 class Target {
 
@@ -12,7 +9,7 @@ class Target {
   String name
 
   Frame lastFrame = Frame.DEFAULT_FRAME
-  //TargetStatus status = TargetStatus.UNKNOWN
+  TargetState state = TargetState.UNKNOWN
 
   String location
 
