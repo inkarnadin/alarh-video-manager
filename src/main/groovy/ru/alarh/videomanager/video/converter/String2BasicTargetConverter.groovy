@@ -2,11 +2,11 @@ package ru.alarh.videomanager.video.converter
 
 import groovy.transform.CompileStatic
 import ru.alarh.videomanager.meta.Transducer
-import ru.alarh.videomanager.video.dto.BasicTarget
+import ru.alarh.videomanager.video.domain.target.Target
 
 @Transducer
 @CompileStatic
-class String2BasicTargetConverter implements Converter<String, BasicTarget> {
+class String2BasicTargetConverter implements Converter<String, Target> {
 
   /**
    * Convert string to target object.
@@ -15,9 +15,9 @@ class String2BasicTargetConverter implements Converter<String, BasicTarget> {
    * @return target object
    */
   @Override
-  BasicTarget convert(String value) {
+  Target convert(String value) {
     return (value)
-       ? new BasicTarget(value.split(":"))
+       ? new Target(value.split(":"))
        : null
   }
 

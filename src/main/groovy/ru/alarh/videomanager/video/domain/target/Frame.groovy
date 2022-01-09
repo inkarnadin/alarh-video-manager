@@ -1,5 +1,6 @@
-package ru.alarh.videomanager.video.domain
+package ru.alarh.videomanager.video.domain.target
 
+import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 
 /**
@@ -8,9 +9,10 @@ import groovy.util.logging.Slf4j
  * @author inkarnadin
  */
 @Slf4j
+@CompileStatic
 class Frame {
 
-  public final static Frame DEFAULT_FRAME = new Frame()
+  final static Frame DEFAULT_FRAME = new Frame()
 
   long frame
   long size
