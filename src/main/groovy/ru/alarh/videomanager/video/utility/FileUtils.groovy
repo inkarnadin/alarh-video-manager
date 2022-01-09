@@ -9,7 +9,13 @@ import java.nio.file.Paths
 
 @Slf4j
 @CompileStatic
-class FileUtils {
+final class FileUtils {
+
+  private FileUtils() {
+    throw new UnsupportedOperationException("Unable to instantiate utility class")
+  }
+
+  static private String userDir = System.getProperty('user.dir')
 
   /**
    * Pre-validate file path and return path if file exists.
@@ -25,6 +31,14 @@ class FileUtils {
     }
     log.warn("Wrong file path: {}", pathToFile)
     return Optional.empty()
+  }
+
+  static String getOrCreateTargetDirectory(String directoryName, String directoryTypeName) {
+    String rootPath = "$userDir/$directoryTypeName"
+    new File(rootPath).mkdir()
+    String path = "$rootPath/$directoryName"
+    new File(path).mkdir()
+    return path
   }
 
 }

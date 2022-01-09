@@ -1,5 +1,8 @@
 package ru.alarh.videomanager.video.domain.target
 
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class Target {
 
   String host
@@ -13,12 +16,12 @@ class Target {
 
   String location
 
-  Target(BasicTarget targetDto) {
-    host = targetDto.host
-    path = targetDto.path
-    login = targetDto.login
-    password = targetDto.password
-    name = targetDto.name
+  Target(String... params) {
+    host = params[0]
+    path = params[1]
+    login = params[2]
+    password = params[3]
+    name = params.length == 5 ? params[4] : ''
   }
 
 }

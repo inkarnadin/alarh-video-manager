@@ -1,12 +1,12 @@
 package ru.alarh.videomanager.video.service.target
 
 import groovy.transform.CompileStatic
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-
 import ru.alarh.videomanager.video.converter.Converter
-import ru.alarh.videomanager.video.domain.target.BasicTarget
-import ru.alarh.videomanager.video.persistence.InMemoryTargetStore
+import ru.alarh.videomanager.video.domain.target.Target
 import ru.alarh.videomanager.video.domain.target.TargetType
+import ru.alarh.videomanager.video.persistence.target.TargetRepository
 import ru.alarh.videomanager.video.properties.TargetGroupProperties
 import ru.alarh.videomanager.video.utility.FileUtils
 
@@ -20,12 +20,15 @@ import static ru.alarh.videomanager.video.domain.target.TargetType.*
 class BasicTargetServiceImpl implements BasicTargetService {
 
   private final TargetGroupProperties properties
-  private final Converter<String, BasicTarget> converter
+  private final Converter<String, Target> converter
+  private final TargetRepository repository
 
+  @Autowired
   @SuppressWarnings('SpringJavaInjectionPointsAutowiringInspection')
-  BasicTargetServiceImpl(TargetGroupProperties properties, Converter<String, BasicTarget> converter) {
+  BasicTargetServiceImpl(TargetGroupProperties properties, Converter<String, Target> converter, TargetRepository repository) {
     this.properties = properties
     this.converter = converter
+    this.repository = repository
   }
 
   @Override
@@ -38,13 +41,18 @@ class BasicTargetServiceImpl implements BasicTargetService {
     FileUtils.checkAndGetFilePath(properties.dead.source).ifPresent(p -> readByType(DEAD, p))
   }
 
+  @Override
+  void update(TargetType type, boolean isOnlyNew) {
+    repository.update(isOnlyNew)
+  }
+
   private void readByType(TargetType type, Path path) {
-    List<BasicTarget> targets = path.collect { Path p ->
-      Files.readAllLines(p).findResult {
-        converter.convert(it)
-      }
+    List<Target> targets = path.with { Path p ->
+        Files.readAllLines(p).collect {
+          converter.convert(it)
+        }
     }
-    InMemoryTargetStore.put(type, targets)
+    repository.saveAll(type, targets)
   }
 
 }
